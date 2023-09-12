@@ -1,0 +1,63 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form"  controllerName="zns02.zdemo02.controller.Home"
+     displayBlock="true">
+    <Page id="page" title="{i18n>title}">
+<content>            
+                <f:SimpleForm id="SimpleFormToolbar"
+                    editable="true"
+                    layout="ResponsiveGridLayout"
+                    labelSpanXL="4"
+                    labelSpanL="3"
+                    labelSpanM="4"
+                    labelSpanS="12"
+                    adjustLabelSpan="false"
+                    emptySpanXL="0"
+                    emptySpanL="4"
+                    emptySpanM="0"
+                    emptySpanS="0"
+                    columnsXL="2"
+                    columnsL="1"
+                    columnsM="1"
+                    singleContainerFullSize="false"
+                    ariaLabelledBy="Title1" >
+                    <f:toolbar>
+                        <Toolbar id="TB1">
+                            <Title id="Title1" text="{i18n>SimpleForm}"/>
+                            <ToolbarSpacer id="_IDGenToolbarSpacer1" />
+                            <Button id="_IDGenButton1" text="{i18n>Edit}" type="Emphasized" icon="sap-icon://edit"/>
+                            <Button id="_IDGenButton2" text="{i18n>Save}" type="Accept" icon="sap-icon://save"/>
+                        </Toolbar>
+                    </f:toolbar>
+                    <f:content>
+                        <Label id="_IDGenLabel1" text="{i18n>CompanyName}"  class = "Label" />
+                        <Input id="_IDGenInput1" value="{SupplierName}" placeholder="{i18n>CustName}"/>
+                        <Label id="_IDGenLabel2" text="{i18n>ContactName}" class = "Label" />
+                        <Input id="_IDGenInput2" value="{Street}"/>
+                        <Label id="_IDGenLabel3" text="{i18n>CustomerID}" class = "Label" />
+                        <Input id="_IDGenInput3" maxLength="5"  value="{Street}" type="Password" >
+                        </Input>
+                        <Label id="_IDGenLabel4" text="{i18n>ContactTitle}" />
+                        <ComboBox id="_IDGenComboBox1"
+                                items="{/Customers}">
+                                <core:Item id="_IDGenItem1" key="{CustomerID}" text="{ContactTitle}" />
+                                <!-- <core:Item id="_IDGenItem2" key="O" text="{i18n>Owner}" />
+                                <core:Item id="_IDGenItem3" key="A" text="{i18n>OrderAdmin}" /> -->
+                            </ComboBox>
+                    </f:content>
+                </f:SimpleForm> 
+
+                    <List
+                        items="{oJsonForView>/}"
+                        headerText="Orders">
+                        <ObjectListItem
+                            title="{oJsonForView>ShipName}"
+                            type="Active"
+                            press="onListItemPress"
+                            number="{oJsonForView>OrderID}">
+                            <ObjectAttribute text="{oJsonForView>ShipAddress}" />
+                            <ObjectAttribute text="{oJsonForView>ShipCity},{oJsonForView>ShipCountry},{oJsonForView>ShipPostalCode}" />
+                            <ObjectAttribute text="{oJsonForView>ShippedDate}" />
+                        </ObjectListItem>
+                    </List>        
+        </content>
+    </Page>
+</mvc:View>
